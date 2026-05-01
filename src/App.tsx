@@ -5,6 +5,7 @@ import Cursor from "./components/Cursor";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
+import Manifesto from "./components/Manifesto";
 import About from "./components/About";
 import Showcase from "./components/Showcase";
 import Process from "./components/Process";
@@ -19,7 +20,7 @@ export default function App() {
   useLenis(!loading);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 2400);
+    const t = setTimeout(() => setLoading(false), 2200);
     return () => clearTimeout(t);
   }, []);
 
@@ -33,6 +34,7 @@ export default function App() {
         <Hero />
         <Marquee />
         <About />
+        <Manifesto />
         <Showcase />
         <Process />
         <Stats />
