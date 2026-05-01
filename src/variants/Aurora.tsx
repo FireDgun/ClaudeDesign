@@ -12,8 +12,9 @@ export default function AuroraVariant() {
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: cream, color: ink, fontFamily: "'Heebo', -apple-system, sans-serif" }}>
       <NavA />
-      <HeroA />
       <BlobsBg />
+      <HeroA />
+      <PhotoStory />
       <ServicesA />
       <BigStatement />
       <ShowcaseA />
@@ -33,22 +34,15 @@ function NavA() {
         style={{ background: "rgba(255,255,255,0.75)", backdropFilter: "blur(20px) saturate(180%)" }}
       >
         <div className="flex items-center gap-2 text-base font-semibold tracking-tight">
-          <span
-            className="block w-7 h-7 rounded-full"
-            style={{ background: `conic-gradient(from 0deg, ${accent}, ${peach}, ${accent})` }}
-          />
+          <span className="block w-7 h-7 rounded-full" style={{ background: `conic-gradient(from 0deg, ${accent}, ${peach}, ${accent})` }} />
           NexusBuild
         </div>
         <nav className="hidden md:flex items-center gap-7 text-sm" style={{ color: "#3a3a3c" }}>
           {["שירותים", "פרויקטים", "אודות", "המלצות"].map((l) => (
-            <a key={l} href="#" className="hover:text-black transition-colors">
-              {l}
-            </a>
+            <a key={l} href="#" className="hover:text-black transition-colors">{l}</a>
           ))}
         </nav>
-        <a href="#cta" className="text-sm font-semibold px-5 py-2 rounded-full text-white transition-opacity hover:opacity-90" style={{ background: ink }}>
-          התחל
-        </a>
+        <a href="#cta" className="text-sm font-semibold px-5 py-2 rounded-full text-white transition-opacity hover:opacity-90" style={{ background: ink }}>התחל</a>
       </div>
     </header>
   );
@@ -58,13 +52,13 @@ function BlobsBg() {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
       <motion.div
-        animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
+        animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-40"
         style={{ background: `radial-gradient(circle, ${accent}, transparent 65%)`, filter: "blur(60px)" }}
       />
       <motion.div
-        animate={{ x: [0, -40, 0], y: [0, -20, 0] }}
+        animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full opacity-40"
         style={{ background: `radial-gradient(circle, ${peach}, transparent 65%)`, filter: "blur(60px)" }}
@@ -135,9 +129,7 @@ function HeroA() {
               <path d="M19 12L5 12M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-          <a href="#showcase" className="text-base font-semibold transition-opacity hover:opacity-70" style={{ color: ink }}>
-            צפו בעבודות →
-          </a>
+          <a href="#showcase" className="text-base font-semibold transition-opacity hover:opacity-70" style={{ color: ink }}>צפו בעבודות →</a>
         </motion.div>
       </motion.div>
 
@@ -148,16 +140,8 @@ function HeroA() {
         className="mt-12 relative mx-auto max-w-6xl w-full px-5 md:px-8"
       >
         <div className="rounded-[2rem] overflow-hidden aspect-[16/9] relative shadow-[0_30px_80px_rgba(124,92,255,0.2)]">
-          <motion.img
-            src={heroImage}
-            alt=""
-            style={{ y: yPic, scale: scalePic }}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: `linear-gradient(180deg, transparent 50%, rgba(244,241,236,0.2) 100%)` }}
-          />
+          <motion.img src={heroImage} alt="" style={{ y: yPic, scale: scalePic }} className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 50%, rgba(244,241,236,0.2) 100%)` }} />
         </div>
 
         <div className="absolute -bottom-6 left-6 md:left-12 max-w-xs rounded-2xl p-4 backdrop-blur-2xl border shadow-xl" style={{ background: "rgba(255,255,255,0.85)", borderColor: "rgba(0,0,0,0.08)" }}>
@@ -166,6 +150,93 @@ function HeroA() {
         </div>
       </motion.div>
     </section>
+  );
+}
+
+/** Sticky photo crossfade narrative — three frames that fade through one another while the headline stays. */
+function PhotoStory() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+
+  const stages = [
+    { src: projects[0].image, label: "שלב 01 · אבחון", title: "מתחילים בשטח." },
+    { src: projects[2].image, label: "שלב 02 · תכנון", title: "מתכננים ב-AI." },
+    { src: projects[1].image, label: "שלב 03 · בנייה", title: "בונים בשקיפות." },
+    { src: projects[4].image, label: "שלב 04 · החיים", title: "הבניין חי לאחר." },
+  ];
+
+  return (
+    <section ref={ref} className="relative" style={{ height: `${stages.length * 100}vh` }}>
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-10 max-w-7xl w-full px-5 md:px-10 items-center">
+          <div className="relative h-[55vh] md:h-[70vh] rounded-[2rem] overflow-hidden">
+            {stages.map((s, i) => (
+              <PhotoFrame key={i} src={s.src} index={i} total={stages.length} progress={scrollYProgress} />
+            ))}
+            <div className="absolute top-5 right-5 px-3 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest backdrop-blur-md text-white" style={{ background: "rgba(0,0,0,0.4)" }}>
+              ●  CHAPTER ↘
+            </div>
+          </div>
+
+          <div className="relative">
+            {stages.map((s, i) => (
+              <Caption key={i} stage={s} index={i} total={stages.length} progress={scrollYProgress} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PhotoFrame({ src, index, total, progress }: { src: string; index: number; total: number; progress: any }) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(progress, [start - 0.05, start + 0.05, end - 0.05, end + 0.05], [0, 1, 1, 0]);
+  const scale = useTransform(progress, [start, end], [1.05, 1]);
+  return (
+    <motion.div style={{ opacity, scale }} className="absolute inset-0">
+      <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
+    </motion.div>
+  );
+}
+
+function Caption({
+  stage,
+  index,
+  total,
+  progress,
+}: {
+  stage: { label: string; title: string };
+  index: number;
+  total: number;
+  progress: any;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(progress, [start - 0.04, start + 0.05, end - 0.05, end + 0.04], [0, 1, 1, 0]);
+  const y = useTransform(progress, [start, end], [40, -40]);
+  return (
+    <motion.div style={{ opacity, y }} className="absolute inset-0 flex flex-col justify-center">
+      <div className="text-xs uppercase tracking-[0.3em] mb-5 font-mono" style={{ color: accent }}>
+        {stage.label} · 0{index + 1} / 0{total}
+      </div>
+      <h2
+        className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] mb-4"
+        style={{
+          background: `linear-gradient(135deg, ${accent}, ${peach})`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        {stage.title}
+      </h2>
+      <p className="text-lg md:text-xl max-w-md leading-snug" style={{ color: "#3a3a3c" }}>
+        כל פרויקט עובר ארבעה שלבים מובחנים — לכל אחד שיטה, כלים, ונתון.
+        אתם רואים, מאשרים, ומתקדמים — בקצב שלכם.
+      </p>
+    </motion.div>
   );
 }
 
@@ -208,17 +279,13 @@ function ServicesA() {
                 >
                   {s.n}
                 </div>
-                <div className="text-xs uppercase tracking-widest font-mono" style={{ color: "#86868b" }}>
-                  {s.tag}
-                </div>
+                <div className="text-xs uppercase tracking-widest font-mono" style={{ color: "#86868b" }}>{s.tag}</div>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight">{s.title}</h3>
               <p className="text-base leading-relaxed mb-6" style={{ color: "#3a3a3c" }}>{s.body}</p>
               <div className="flex flex-wrap gap-2">
                 {s.tools.map((t) => (
-                  <span key={t} className="text-[11px] uppercase tracking-widest px-3 py-1 rounded-full font-mono" style={{ background: "rgba(0,0,0,0.04)", color: "#3a3a3c" }}>
-                    {t}
-                  </span>
+                  <span key={t} className="text-[11px] uppercase tracking-widest px-3 py-1 rounded-full font-mono" style={{ background: "rgba(0,0,0,0.04)", color: "#3a3a3c" }}>{t}</span>
                 ))}
               </div>
             </motion.div>
@@ -280,12 +347,7 @@ function ShowcaseA() {
               className="group cursor-pointer"
             >
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-4 shadow-lg">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  loading="lazy"
-                />
+                <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" loading="lazy" />
                 <div className="absolute top-4 right-4 left-4 flex justify-between text-[10px] uppercase tracking-widest text-white/95 font-mono">
                   <span>0{i + 1}</span>
                   <span>{p.year}</span>
@@ -310,12 +372,7 @@ function ShowcaseA() {
               transition={{ delay: i * 0.08, duration: 0.7 }}
               className="group relative cursor-pointer rounded-3xl overflow-hidden aspect-[16/9]"
             >
-              <img
-                src={p.image}
-                alt={p.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                loading="lazy"
-              />
+              <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute bottom-5 right-5 left-5 text-white">
                 <div className="text-[10px] uppercase tracking-widest mb-2 font-mono" style={{ color: p.accent }}>

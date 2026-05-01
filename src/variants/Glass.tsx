@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { services, projects, stats, testimonials } from "../data";
 import SplitText from "../ui/SplitText";
+import Tilt from "../ui/Tilt";
+import { useMouseLight } from "../hooks/useMouseLight";
 
 export default function GlassVariant() {
   return (
@@ -9,6 +11,7 @@ export default function GlassVariant() {
       <Aurora />
       <NavG />
       <HeroG />
+      <FeatureSticky />
       <ServicesG />
       <ShowcaseG />
       <NumbersG />
@@ -22,20 +25,26 @@ export default function GlassVariant() {
 function Aurora() {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none">
-      <div
+      <motion.div
+        animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -top-40 -right-40 w-[800px] h-[800px] rounded-full blur-[120px] opacity-50"
         style={{ background: "radial-gradient(circle, #5d6cff 0%, transparent 70%)" }}
       />
-      <div
+      <motion.div
+        animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
+        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -bottom-40 -left-40 w-[800px] h-[800px] rounded-full blur-[120px] opacity-40"
         style={{ background: "radial-gradient(circle, #a855f7 0%, transparent 70%)" }}
       />
-      <div
+      <motion.div
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] rounded-full blur-[140px] opacity-30"
         style={{ background: "radial-gradient(ellipse, #06b6d4 0%, transparent 70%)" }}
       />
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
@@ -57,17 +66,10 @@ function NavG() {
         </div>
         <nav className="hidden md:flex items-center gap-7 text-xs text-white/60">
           {["שירותים", "פרויקטים", "המספרים", "המלצות"].map((l) => (
-            <a key={l} href="#" className="hover:text-white transition-colors">
-              {l}
-            </a>
+            <a key={l} href="#" className="hover:text-white transition-colors">{l}</a>
           ))}
         </nav>
-        <a
-          href="#cta"
-          className="text-xs font-semibold px-4 py-1.5 rounded-full bg-white text-[#06061a] hover:bg-indigo-200 transition-colors"
-        >
-          התחל
-        </a>
+        <a href="#cta" className="text-xs font-semibold px-4 py-1.5 rounded-full bg-white text-[#06061a] hover:bg-indigo-200 transition-colors">התחל</a>
       </div>
     </header>
   );
@@ -117,19 +119,13 @@ function HeroG() {
           transition={{ delay: 1.3, duration: 0.8 }}
           className="flex flex-col sm:flex-row justify-center items-center gap-3"
         >
-          <a
-            href="#cta"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#06061a] font-semibold hover:bg-indigo-200 transition-colors text-sm"
-          >
+          <a href="#cta" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#06061a] font-semibold hover:bg-indigo-200 transition-colors text-sm">
             קבע שיחת ייעוץ
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M19 12L5 12M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-          <a
-            href="#showcase"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/15 text-sm hover:bg-white/10 transition-colors"
-          >
+          <a href="#showcase" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/15 text-sm hover:bg-white/10 transition-colors">
             צפו בפרויקטים
           </a>
         </motion.div>
@@ -141,11 +137,13 @@ function HeroG() {
         transition={{ delay: 1.6, duration: 1, ease: [0.65, 0.05, 0.36, 1] }}
         className="mt-20 mx-auto max-w-6xl w-full px-5 md:px-8"
       >
-        <div className="rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-2 shadow-[0_30px_120px_rgba(93,108,255,0.25)]">
-          <div className="rounded-2xl overflow-hidden aspect-[16/9] relative" style={{ background: "linear-gradient(135deg, #1e1b4b, #4338ca, #06b6d4)" }}>
-            <DashboardMockup />
+        <Tilt intensity={5} className="rounded-3xl">
+          <div className="rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-2 shadow-[0_30px_120px_rgba(93,108,255,0.25)]">
+            <div className="rounded-2xl overflow-hidden aspect-[16/9] relative" style={{ background: "linear-gradient(135deg, #1e1b4b, #4338ca, #06b6d4)" }}>
+              <DashboardMockup />
+            </div>
           </div>
-        </div>
+        </Tilt>
       </motion.div>
     </section>
   );
@@ -161,7 +159,13 @@ function DashboardMockup() {
           <div className="flex-1 flex flex-col gap-1.5">
             {[88, 64, 42, 30].map((w, i) => (
               <div key={i} className="h-2 rounded-full bg-white/10 overflow-hidden">
-                <div className="h-full rounded-full bg-gradient-to-r from-indigo-400 to-cyan-300" style={{ width: `${w}%` }} />
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${w}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: i * 0.15, ease: [0.65, 0.05, 0.36, 1] }}
+                  className="h-full rounded-full bg-gradient-to-r from-indigo-400 to-cyan-300"
+                />
               </div>
             ))}
           </div>
@@ -211,7 +215,82 @@ function DashboardMockup() {
   );
 }
 
+function FeatureSticky() {
+  const ref = useRef<HTMLElement>(null);
+  const features = [
+    {
+      tag: "AI · PARAMETRIC",
+      title: "תכנון פרמטרי, חי.",
+      body: "שינוי פרמטר אחד ומאות גרסאות מחושבות מחדש בזמן אמת. אופטימיזציית אקלים, אור ועלות בלחיצת כפתור.",
+      gradient: "linear-gradient(135deg, #6366f1, #06b6d4)",
+    },
+    {
+      tag: "LIDAR · 3D SCAN",
+      title: "סריקות ברזולוציית מילימטר.",
+      body: "כל מבנה קיים מקבל תאום דיגיטלי. כל פגם, כל סדק, כל נישה — נתון. תכנון על אמת ולא על הנחות.",
+      gradient: "linear-gradient(135deg, #8b5cf6, #ec4899)",
+    },
+    {
+      tag: "IOT · LIVE BUILDING",
+      title: "בניינים שחושבים.",
+      body: "חיישנים פנימיים מנטרים תפוסה, אנרגיה, איכות אוויר. הבניין מדבר עם הצוות אחרי שהוא נמסר.",
+      gradient: "linear-gradient(135deg, #06b6d4, #10b981)",
+    },
+  ];
+  const total = features.length;
+  return (
+    <section ref={ref} className="relative" style={{ height: `${total * 100}vh` }}>
+      {features.map((f, i) => (
+        <FeaturePanel key={i} feature={f} index={i} total={total} parentRef={ref} />
+      ))}
+    </section>
+  );
+}
+
+function FeaturePanel({
+  feature,
+  index,
+  total,
+  parentRef,
+}: {
+  feature: { tag: string; title: string; body: string; gradient: string };
+  index: number;
+  total: number;
+  parentRef: React.RefObject<HTMLElement>;
+}) {
+  const { scrollYProgress } = useScroll({ target: parentRef });
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(scrollYProgress, [start - 0.05, start + 0.05, end - 0.05, end + 0.05], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [start, end], [1, 0.95]);
+  return (
+    <motion.div style={{ opacity, scale }} className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-8">
+      <div className="grid lg:grid-cols-2 gap-10 max-w-7xl w-full items-center">
+        <div>
+          <div className="text-xs uppercase tracking-[0.3em] mb-5 font-mono text-indigo-300">{feature.tag} · 0{index + 1} / 0{total}</div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.95] mb-6">
+            {feature.title}
+          </h2>
+          <p className="text-lg md:text-xl text-white/65 max-w-lg leading-snug">{feature.body}</p>
+        </div>
+        <Tilt intensity={6} className="rounded-3xl aspect-[5/4]">
+          <div
+            className="rounded-3xl w-full h-full p-px"
+            style={{ background: feature.gradient }}
+          >
+            <div className="rounded-3xl w-full h-full bg-white/5 backdrop-blur-2xl border border-white/10 p-8 flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30" style={{ background: feature.gradient }} />
+              <div className="relative text-7xl md:text-9xl font-bold tracking-tighter">0{index + 1}</div>
+            </div>
+          </div>
+        </Tilt>
+      </div>
+    </motion.div>
+  );
+}
+
 function ServicesG() {
+  const ref = useMouseLight<HTMLDivElement>();
   return (
     <section className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -228,18 +307,23 @@ function ServicesG() {
           <p className="text-white/60">הכלים החזקים בעולם, מתחת לקורת גג אחת.</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 relative" style={{ "--mx": 0.5, "--my": 0.5 } as any}>
+          <div
+            className="absolute inset-0 pointer-events-none rounded-3xl"
+            style={{
+              background:
+                "radial-gradient(500px circle at calc(var(--mx) * 100%) calc(var(--my) * 100%), rgba(93,108,255,0.18), transparent 60%)",
+            }}
+          />
           {services.map((s, i) => (
-            <motion.div
-              key={s.n}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.06, duration: 0.7 }}
-              className="group relative rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-6 hover:bg-white/8 hover:border-white/20 transition-colors overflow-hidden"
-            >
-              <div className="absolute -top-1/2 -right-1/2 w-full h-full rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "#5d6cff" }} />
-              <div className="relative">
+            <Tilt key={s.n} intensity={6} glow className="rounded-3xl">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.06, duration: 0.7 }}
+                className="relative rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-6 hover:border-white/20 transition-colors overflow-hidden h-full"
+              >
                 <div className="text-xs text-indigo-300 uppercase tracking-widest mb-3 font-mono">{s.tag}</div>
                 <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
                 <p className="text-sm text-white/60 leading-relaxed mb-5">{s.body}</p>
@@ -250,8 +334,8 @@ function ServicesG() {
                     </span>
                   ))}
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Tilt>
           ))}
         </div>
       </div>
@@ -277,33 +361,29 @@ function ShowcaseG() {
 
         <div className="grid md:grid-cols-2 gap-5">
           {projects.slice(0, 4).map((p, i) => (
-            <motion.article
-              key={p.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: (i % 2) * 0.08, duration: 0.8 }}
-              className={`group relative rounded-3xl overflow-hidden border border-white/10 ${i === 0 ? "md:row-span-2 aspect-[4/5]" : "aspect-[4/3]"}`}
-            >
-              <img
-                src={p.image}
-                alt={p.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#06061a]/95 via-[#06061a]/30 to-transparent" />
-              <div className="absolute top-4 right-4 left-4 flex justify-between text-[10px] uppercase tracking-widest text-white/80 font-mono">
-                <span>0{i + 1}</span>
-                <span>{p.year}</span>
-              </div>
-              <div className="absolute bottom-5 right-5 left-5">
-                <div className="text-[10px] uppercase tracking-widest mb-2 font-mono" style={{ color: p.accent }}>
-                  {p.type} · {p.floors} קומות
+            <Tilt key={p.title} intensity={4} className="rounded-3xl">
+              <motion.article
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: (i % 2) * 0.08, duration: 0.8 }}
+                className={`relative rounded-3xl overflow-hidden border border-white/10 ${i === 0 ? "md:row-span-2 aspect-[4/5]" : "aspect-[4/3]"}`}
+              >
+                <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-110" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06061a]/95 via-[#06061a]/30 to-transparent" />
+                <div className="absolute top-4 right-4 left-4 flex justify-between text-[10px] uppercase tracking-widest text-white/80 font-mono">
+                  <span>0{i + 1}</span>
+                  <span>{p.year}</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-1">{p.title}</h3>
-                <div className="text-sm text-white/70">{p.location}</div>
-              </div>
-            </motion.article>
+                <div className="absolute bottom-5 right-5 left-5">
+                  <div className="text-[10px] uppercase tracking-widest mb-2 font-mono" style={{ color: p.accent }}>
+                    {p.type} · {p.floors} קומות
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-1">{p.title}</h3>
+                  <div className="text-sm text-white/70">{p.location}</div>
+                </div>
+              </motion.article>
+            </Tilt>
           ))}
         </div>
       </div>
@@ -354,21 +434,22 @@ function VoicesG() {
         </div>
         <div className="grid md:grid-cols-3 gap-5">
           {testimonials.map((t, i) => (
-            <motion.figure
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08, duration: 0.6 }}
-              className="rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 p-6 flex flex-col"
-            >
-              <blockquote className="text-base md:text-lg leading-relaxed mb-6 flex-1">{t.quote}</blockquote>
-              <figcaption className="border-t border-white/10 pt-4">
-                <div className="font-semibold text-sm">{t.name}</div>
-                <div className="text-xs text-white/55">{t.role}</div>
-                <div className="text-[10px] text-indigo-300 mt-1 uppercase tracking-widest font-mono">{t.project}</div>
-              </figcaption>
-            </motion.figure>
+            <Tilt key={i} intensity={5} className="rounded-2xl">
+              <motion.figure
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.08, duration: 0.6 }}
+                className="rounded-2xl bg-white/5 backdrop-blur-2xl border border-white/10 p-6 flex flex-col h-full"
+              >
+                <blockquote className="text-base md:text-lg leading-relaxed mb-6 flex-1">{t.quote}</blockquote>
+                <figcaption className="border-t border-white/10 pt-4">
+                  <div className="font-semibold text-sm">{t.name}</div>
+                  <div className="text-xs text-white/55">{t.role}</div>
+                  <div className="text-[10px] text-indigo-300 mt-1 uppercase tracking-widest font-mono">{t.project}</div>
+                </figcaption>
+              </motion.figure>
+            </Tilt>
           ))}
         </div>
       </div>
@@ -380,32 +461,34 @@ function CTAG() {
   return (
     <section id="cta" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-5xl px-5 md:px-8">
-        <div className="relative rounded-[2rem] overflow-hidden bg-white/5 backdrop-blur-2xl border border-white/10 p-12 md:p-20 text-center">
-          <div className="absolute -top-1/2 -right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-50" style={{ background: "#5d6cff" }} />
-          <div className="absolute -bottom-1/2 -left-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-40" style={{ background: "#06b6d4" }} />
-          <div className="relative">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-[0.95]">
-              <span className="block overflow-hidden">
-                <SplitText text="יש לכם חזון." stagger={0.04} duration={1} />
-              </span>
-              <span className="block overflow-hidden bg-gradient-to-r from-indigo-200 via-white to-cyan-200 bg-clip-text text-transparent">
-                <SplitText text="נבנה אותו." stagger={0.04} duration={1} delay={0.1} />
-              </span>
-            </h2>
-            <p className="text-white/65 text-lg mb-10 max-w-xl mx-auto">
-              שיחה ראשונה — חינם, בלי התחייבות. נבין מה אתם רוצים להשיג ונראה איך הטכנולוגיה הופכת את זה למציאות.
-            </p>
-            <a
-              href="mailto:hello@nexusbuild.io"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#06061a] font-semibold hover:bg-indigo-200 transition-colors"
-            >
-              קבע פגישה ראשונה
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M19 12L5 12M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+        <Tilt intensity={3} className="rounded-[2rem]">
+          <div className="relative rounded-[2rem] overflow-hidden bg-white/5 backdrop-blur-2xl border border-white/10 p-12 md:p-20 text-center">
+            <div className="absolute -top-1/2 -right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-50" style={{ background: "#5d6cff" }} />
+            <div className="absolute -bottom-1/2 -left-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-40" style={{ background: "#06b6d4" }} />
+            <div className="relative">
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-[0.95]">
+                <span className="block overflow-hidden">
+                  <SplitText text="יש לכם חזון." stagger={0.04} duration={1} />
+                </span>
+                <span className="block overflow-hidden bg-gradient-to-r from-indigo-200 via-white to-cyan-200 bg-clip-text text-transparent">
+                  <SplitText text="נבנה אותו." stagger={0.04} duration={1} delay={0.1} />
+                </span>
+              </h2>
+              <p className="text-white/65 text-lg mb-10 max-w-xl mx-auto">
+                שיחה ראשונה — חינם, בלי התחייבות. נבין מה אתם רוצים להשיג ונראה איך הטכנולוגיה הופכת את זה למציאות.
+              </p>
+              <a
+                href="mailto:hello@nexusbuild.io"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#06061a] font-semibold hover:bg-indigo-200 transition-colors"
+              >
+                קבע פגישה ראשונה
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M19 12L5 12M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
+        </Tilt>
       </div>
     </section>
   );

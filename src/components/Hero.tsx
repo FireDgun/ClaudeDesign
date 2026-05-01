@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMagnetic } from "../hooks/useMagnetic";
 import { useInViewSection } from "../hooks/useInViewSection";
@@ -9,10 +9,7 @@ const HeroScene = lazy(() => import("./HeroScene"));
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInViewSection(ref, "200px");
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
@@ -20,26 +17,49 @@ export default function Hero() {
   const filter = useTransform(blur, (v) => `blur(${v}px)`);
   const ctaRef = useMagnetic<HTMLAnchorElement>(0.4);
 
-  const heroDelay = 2.5;
+  const [time, setTime] = useState("00:00:00");
+  useEffect(() => {
+    const tick = () => {
+      const d = new Date();
+      setTime(
+        `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}:${String(d.getSeconds()).padStart(2, "0")}`
+      );
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const heroDelay = 1.2;
 
   return (
-    <section
-      id="hero"
-      ref={ref}
-      className="relative min-h-screen overflow-hidden grid-bg isolate"
-    >
+    <section id="hero" ref={ref} className="relative min-h-screen overflow-hidden grid-bg isolate">
       <div className="absolute inset-0 gradient-mesh" />
 
-      <motion.div style={{ scale, filter }} className="absolute inset-0 z-0 pointer-events-none">
+      <motion.div style={{ scale, filter }} className="absolute inset-0 z-0 pointer-events-auto">
         <Suspense fallback={<div className="w-full h-full" />}>
           <HeroScene active={inView} />
         </Suspense>
       </motion.div>
 
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 mx-auto max-w-[1500px] px-5 md:px-8 pt-40 md:pt-48 pb-24"
-      >
+      {/* HUD top-left corner brackets */}
+      <div className="absolute top-24 left-5 md:left-8 z-10 num-display text-[10px] uppercase tracking-[0.3em] text-accent/80 hidden md:block pointer-events-none">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="block w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
+          REC ⏺ NEXUS-OS · v4.0.26
+        </div>
+        <div>SCENE: HELIX-TOWER · CLUSTER 02</div>
+        <div>RT: <span className="text-white">{time}</span> · UTC+3</div>
+      </div>
+
+      {/* HUD top-right */}
+      <div className="absolute top-24 right-5 md:right-8 z-10 num-display text-[10px] uppercase tracking-[0.3em] text-white/50 hidden md:block pointer-events-none text-left">
+        <div>LAT 32.0853°N</div>
+        <div>LON 34.7818°E</div>
+        <div className="text-accent">RT-WEBGL · 144FPS</div>
+      </div>
+
+      <motion.div style={{ y, opacity }} className="relative z-10 mx-auto max-w-[1500px] px-5 md:px-8 pt-40 md:pt-48 pb-24 pointer-events-none">
         <div className="flex items-center gap-3 mb-10 num-display text-[10px] uppercase tracking-[0.3em] text-white/50">
           <motion.span
             initial={{ scaleX: 0 }}
@@ -71,7 +91,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        <div className="grid md:grid-cols-12 gap-8 max-w-6xl">
+        <div className="grid md:grid-cols-12 gap-8 max-w-6xl pointer-events-auto">
           <motion.p
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -106,18 +126,24 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div className="absolute bottom-6 inset-x-0 z-10 flex justify-between items-end mx-auto max-w-[1500px] px-5 md:px-8 num-display text-[10px] uppercase tracking-[0.3em] text-white/40">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: heroDelay + 1.6 }} className="flex items-center gap-2">
-          <span className="block w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
-          LIVE · TEL AVIV — 32.0853°N
-        </motion.div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: heroDelay + 1.6 }} className="hidden md:block">
-          ← SCROLL TO EXPLORE
-        </motion.div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: heroDelay + 1.6 }}>
-          [01 / 08]
-        </motion.div>
+      {/* Bottom HUD */}
+      <div className="absolute bottom-6 inset-x-0 z-10 mx-auto max-w-[1500px] px-5 md:px-8 num-display text-[10px] uppercase tracking-[0.3em] text-white/50 pointer-events-none">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pb-3 border-t border-white/10 pt-3">
+          <Stat label="MOTION" value="LIVE · 144FPS" color="text-accent" />
+          <Stat label="PARTICLES" value="600 / GPU" />
+          <Stat label="LATENCY" value="< 16MS" />
+          <Stat label="STATE" value="OPERATIONAL" color="text-emerald-300" />
+        </div>
       </div>
     </section>
+  );
+}
+
+function Stat({ label, value, color = "text-white" }: { label: string; value: string; color?: string }) {
+  return (
+    <div className="flex flex-col">
+      <span className="text-white/40 text-[9px]">{label}</span>
+      <span className={color}>{value}</span>
+    </div>
   );
 }
