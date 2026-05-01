@@ -54,7 +54,7 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-1 z-40 border-b" style={{ borderColor: "rgba(26,26,26,0.15)", background: cream }}>
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-4 flex items-center justify-between">
-        <div className="font-serif italic text-2xl tracking-tight">Nexus<span style={{ color: accent }}>·</span>Build</div>
+        <div className="font-magazine italic text-2xl tracking-tight">Nexus<span style={{ color: accent }}>·</span>Build</div>
         <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-[0.25em] font-mono">
           <span style={{ opacity: 0.5 }}>גיליון 04 — מאי 2026</span>
           <span style={{ opacity: 0.5 }}>·</span>
@@ -95,7 +95,7 @@ function Hero() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-x-10 gap-y-6 items-start mb-16">
-          <h1 className="lg:col-span-9 font-serif font-black tracking-tight leading-[0.85]">
+          <h1 className="lg:col-span-9 font-magazine font-black tracking-tight leading-[0.85]">
             <span className="block text-[14vw] md:text-[10vw] overflow-hidden">
               <SplitText text="בונים את" stagger={0.04} duration={1.1} />
             </span>
@@ -108,7 +108,7 @@ function Hero() {
           </h1>
           <aside className="lg:col-span-3 lg:pt-6 border-t pt-6 lg:border-t-0 lg:border-r lg:pr-6" style={{ borderColor: "rgba(26,26,26,0.2)" }}>
             <div className="text-[10px] uppercase tracking-[0.3em] font-mono mb-3" style={{ opacity: 0.6 }}>מתוך הגיליון</div>
-            <div className="font-serif italic text-base leading-snug mb-3">
+            <div className="font-magazine italic text-base leading-snug mb-3">
               "אנחנו לא מציירים בניינים. אנחנו <span style={{ color: accent }}>מקודדים</span> אותם."
             </div>
             <div className="text-[10px] uppercase tracking-[0.3em] font-mono" style={{ opacity: 0.5 }}>— עמ׳ 32, מתוך הראיון עם הצוות</div>
@@ -146,7 +146,7 @@ function Index() {
           ].map(([n, t, p]) => (
             <a key={t} href="#" className="font-mono text-xs uppercase tracking-[0.25em] flex items-baseline justify-between border-b pb-2 group" style={{ borderColor: "rgba(26,26,26,0.2)" }}>
               <span style={{ color: accent }}>{n}</span>
-              <span className="text-base font-serif normal-case tracking-normal mr-2 ml-auto group-hover:italic transition-all">{t}</span>
+              <span className="text-base font-magazine normal-case tracking-normal mr-2 ml-auto group-hover:italic transition-all">{t}</span>
               <span style={{ opacity: 0.5 }}>{p}</span>
             </a>
           ))}
@@ -163,7 +163,7 @@ function Lede() {
         <aside className="lg:col-span-3 order-2 lg:order-1 space-y-6 text-sm">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2" style={{ color: accent }}>מאת</div>
-            <div className="font-serif italic text-lg">הסטודיו, מערכת המגזין</div>
+            <div className="font-magazine italic text-lg">הסטודיו, מערכת המגזין</div>
           </div>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2" style={{ color: accent }}>נושא</div>
@@ -171,7 +171,7 @@ function Lede() {
           </div>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2" style={{ color: accent }}>זמן קריאה</div>
-            <div className="font-serif text-lg">14 דקות</div>
+            <div className="font-magazine text-lg">14 דקות</div>
           </div>
           <div className="pt-6 border-t" style={{ borderColor: "rgba(26,26,26,0.2)" }}>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] leading-relaxed" style={{ opacity: 0.6 }}>
@@ -181,7 +181,7 @@ function Lede() {
           </div>
         </aside>
         <div className="lg:col-span-9 order-1 lg:order-2">
-          <p className="font-serif text-2xl md:text-3xl leading-snug font-light max-w-3xl">
+          <p className="font-magazine text-2xl md:text-3xl leading-snug font-light max-w-3xl">
             <span className="float-right ml-3 text-[5em] leading-[0.85] font-black" style={{ color: accent, fontFamily: "Georgia, serif" }}>ב</span>
             עידן שבו <em className="italic">בינה מלאכותית</em> מתכננת מבנים מהר יותר מאדריכל אנושי, סטודיו אחד בתל אביב מציע משהו אחר —
             לא להחליף את האדם, אלא להעצים אותו. נקסוס בילד הוא לא משרד אדריכלים. הוא מערכת.
@@ -250,7 +250,7 @@ function PhotoGrid() {
           </motion.figure>
         </div>
 
-        <blockquote className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight max-w-4xl mx-auto text-center my-16 md:my-24">
+        <blockquote className="font-magazine text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight max-w-4xl mx-auto text-center my-16 md:my-24">
           <span className="text-[3em] leading-none" style={{ color: accent, fontFamily: "Georgia,serif" }}>"</span>
           <br />
           <em className="italic">אנחנו לא בונים ארבעה קירות וגג.</em>
@@ -273,7 +273,7 @@ function Cover() {
             <span className="block w-8 h-px" style={{ background: accent }} />
             II · התמחויות
           </div>
-          <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl leading-[0.9] mb-6 tracking-tight">
+          <h2 className="font-magazine text-6xl md:text-7xl lg:text-8xl leading-[0.9] mb-6 tracking-tight">
             <span className="block overflow-hidden"><SplitText text="ארבעה" stagger={0.04} duration={1} /></span>
             <span className="block italic font-light overflow-hidden" style={{ color: accent }}>
               <SplitText text="תחומים." stagger={0.04} duration={1} delay={0.1} />
@@ -303,9 +303,9 @@ function Cover() {
             >
               <div className="flex items-start justify-between gap-6 mb-4">
                 <div className="font-mono text-[10px] uppercase tracking-[0.25em]" style={{ color: accent }}>{s.tag}</div>
-                <div className="font-serif italic text-sm" style={{ opacity: 0.4 }}>fig. {s.n}</div>
+                <div className="font-magazine italic text-sm" style={{ opacity: 0.4 }}>fig. {s.n}</div>
               </div>
-              <h3 className="font-serif text-3xl md:text-5xl mb-3 leading-tight tracking-tight">
+              <h3 className="font-magazine text-3xl md:text-5xl mb-3 leading-tight tracking-tight">
                 {s.title}
               </h3>
               <p className="text-base md:text-lg leading-snug max-w-xl mb-5" style={{ opacity: 0.7 }}>{s.body}</p>
@@ -332,7 +332,7 @@ function Featurette() {
           <span className="block w-8 h-px" style={{ background: accent }} />
           MANIFESTO — pull quote
         </div>
-        <blockquote className="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-5xl">
+        <blockquote className="font-magazine text-4xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-5xl">
           <span className="block overflow-hidden mb-2"><SplitText text='"אנחנו לא מציירים בניינים.' stagger={0.04} duration={1} /></span>
           <span className="block overflow-hidden italic" style={{ color: accent }}>
             <SplitText text="אנחנו מקודדים אותם." stagger={0.04} duration={1} delay={0.15} />
@@ -354,7 +354,7 @@ function Spread() {
           <span className="block w-8 h-px" style={{ background: accent }} />
           III · תיק עבודות
         </div>
-        <h2 className="font-serif text-5xl md:text-7xl tracking-tight leading-none">
+        <h2 className="font-magazine text-5xl md:text-7xl tracking-tight leading-none">
           <span className="overflow-hidden inline-block"><SplitText text="חמישה פרויקטים." stagger={0.04} duration={1} /></span>
           <br />
           <span className="italic font-light overflow-hidden inline-block" style={{ color: accent }}>
@@ -384,8 +384,8 @@ function Spread() {
                 </div>
                 <div>
                   <div className="font-mono text-[11px] uppercase tracking-[0.3em] mb-3 opacity-80">{p.type} · {p.floors} קומות</div>
-                  <h3 className="font-serif text-3xl md:text-5xl mb-1 tracking-tight leading-none">{p.title}</h3>
-                  <div className="text-sm opacity-80 italic font-serif">{p.location}</div>
+                  <h3 className="font-magazine text-3xl md:text-5xl mb-1 tracking-tight leading-none">{p.title}</h3>
+                  <div className="text-sm opacity-80 italic font-magazine">{p.location}</div>
                 </div>
               </div>
             </motion.article>
@@ -416,7 +416,7 @@ function Numbers() {
               style={{ background: cream }}
             >
               <div className="font-mono text-[10px] uppercase tracking-[0.3em] mb-4" style={{ opacity: 0.5 }}>fig. 0{i + 1}</div>
-              <div className="font-serif text-7xl md:text-8xl leading-none mb-3 tracking-tighter">
+              <div className="font-magazine text-7xl md:text-8xl leading-none mb-3 tracking-tighter">
                 {s.value}
                 <span className="italic font-light text-5xl" style={{ color: accent }}>{s.suffix}</span>
               </div>
@@ -449,8 +449,8 @@ function Voices() {
               className="border-t-2 pt-6"
               style={{ borderColor: ink }}
             >
-              <blockquote className="font-serif text-xl md:text-2xl leading-snug mb-6">
-                <span className="text-4xl font-serif" style={{ color: accent }}>"</span>
+              <blockquote className="font-magazine text-xl md:text-2xl leading-snug mb-6">
+                <span className="text-4xl font-magazine" style={{ color: accent }}>"</span>
                 {t.quote}
               </blockquote>
               <figcaption className="font-mono text-[11px] uppercase tracking-[0.25em]" style={{ opacity: 0.7 }}>
@@ -470,7 +470,7 @@ function Closing() {
     <section id="cta" className="py-24 md:py-32" style={{ background: ink, color: cream }}>
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 text-center">
         <div className="font-mono text-[10px] uppercase tracking-[0.3em] mb-10 opacity-60">VI · יצירת קשר</div>
-        <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-12">
+        <h2 className="font-magazine text-6xl md:text-8xl lg:text-9xl leading-none tracking-tight mb-12">
           <span className="block overflow-hidden"><SplitText text="יש לכם חזון." stagger={0.04} duration={1} /></span>
           <span className="block italic font-light overflow-hidden" style={{ color: accent }}>
             <SplitText text="נבנה אותו." stagger={0.04} duration={1} delay={0.1} />

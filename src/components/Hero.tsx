@@ -59,6 +59,11 @@ export default function Hero() {
         <div className="text-accent">RT-WEBGL · 144FPS</div>
       </div>
 
+      {/* Vertical edge marker — breaks the hero grid */}
+      <div className="hidden lg:block absolute right-3 top-1/2 -translate-y-1/2 z-10 num-display text-[10px] uppercase tracking-[0.4em] text-accent/70 pointer-events-none" style={{ writingMode: "vertical-rl" }}>
+        ↘ HELIX-TOWER · CLUSTER 02 · v4.0.26 · NEXUS-OS
+      </div>
+
       <motion.div style={{ y, opacity }} className="relative z-10 mx-auto max-w-[1500px] px-5 md:px-8 pt-40 md:pt-48 pb-24 pointer-events-none">
         <div className="flex items-center gap-3 mb-10 num-display text-[10px] uppercase tracking-[0.3em] text-white/50">
           <motion.span

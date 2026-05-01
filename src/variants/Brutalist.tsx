@@ -338,13 +338,25 @@ function ServicesGrid() {
 function RotatedStamp() {
   return (
     <section className="border-b-4 relative overflow-hidden" style={{ borderColor: ink, background: ink, color: paper }}>
+      {/* Oversized rotated word that breaks the right edge — grid-breaking decoration */}
+      <motion.div
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 1, ease: [0.65, 0.05, 0.36, 1] }}
+        className="absolute top-1/2 -translate-y-1/2 -right-[10%] md:-right-[6%] text-[28vw] md:text-[20vw] font-black tracking-tighter leading-none pointer-events-none select-none"
+        style={{ WebkitTextStroke: `2px ${orange}`, color: "transparent", transform: "rotate(-90deg)", transformOrigin: "right center" }}
+      >
+        BRUTAL.
+      </motion.div>
+
       <div className="border-l-4 border-r-4 px-6 md:px-10 py-12 relative" style={{ borderColor: ink }}>
         <motion.div
-          initial={{ rotate: -8, scale: 0.9, opacity: 0 }}
-          whileInView={{ rotate: -6, scale: 1, opacity: 1 }}
+          initial={{ rotate: -12, scale: 0.7, opacity: 0 }}
+          whileInView={{ rotate: -8, scale: 1, opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
-          className="absolute top-1/2 -translate-y-1/2 right-8 w-32 h-32 md:w-48 md:h-48 border-4 rounded-full flex items-center justify-center text-center pointer-events-none"
+          className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 w-32 h-32 md:w-44 md:h-44 border-4 rounded-full flex items-center justify-center text-center pointer-events-none"
           style={{ borderColor: orange, background: paper, color: ink }}
         >
           <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] leading-tight">

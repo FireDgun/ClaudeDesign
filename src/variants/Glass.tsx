@@ -29,13 +29,13 @@ function Aurora() {
         animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -top-40 -right-40 w-[800px] h-[800px] rounded-full blur-[120px] opacity-50"
-        style={{ background: "radial-gradient(circle, #5d6cff 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, #2dd4bf 0%, transparent 70%)" }}
       />
       <motion.div
         animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -bottom-40 -left-40 w-[800px] h-[800px] rounded-full blur-[120px] opacity-40"
-        style={{ background: "radial-gradient(circle, #a855f7 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, #fb923c 0%, transparent 70%)" }}
       />
       <motion.div
         animate={{ scale: [1, 1.1, 1] }}
@@ -61,7 +61,7 @@ function NavG() {
     <header className="fixed inset-x-0 top-4 z-40 px-4 md:px-6">
       <div className="mx-auto max-w-6xl rounded-full bg-white/5 backdrop-blur-2xl border border-white/10 px-5 py-2.5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
         <div className="flex items-center gap-2 text-base font-semibold tracking-tight">
-          <span className="block w-2.5 h-2.5 rounded-full" style={{ background: "#5d6cff", boxShadow: "0 0 12px #5d6cff" }} />
+          <span className="block w-2.5 h-2.5 rounded-full" style={{ background: "#2dd4bf", boxShadow: "0 0 12px #2dd4bf" }} />
           NexusBuild
         </div>
         <nav className="hidden md:flex items-center gap-7 text-xs text-white/60">
@@ -69,7 +69,7 @@ function NavG() {
             <a key={l} href="#" className="hover:text-white transition-colors">{l}</a>
           ))}
         </nav>
-        <a href="#cta" className="text-xs font-semibold px-4 py-1.5 rounded-full bg-white text-[#06061a] hover:bg-indigo-200 transition-colors">התחל</a>
+        <a href="#cta" className="text-xs font-semibold px-4 py-1.5 rounded-full bg-white text-[#06061a] hover:bg-teal-200 transition-colors">התחל</a>
       </div>
     </header>
   );
@@ -88,7 +88,7 @@ function HeroG() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-xs">
             <span className="block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-white/70">חדש: סריקות LiDAR ב-RT</span>
-            <span className="text-indigo-300">→</span>
+            <span className="text-teal-300">→</span>
           </div>
         </div>
 
@@ -97,7 +97,7 @@ function HeroG() {
             <SplitText text="בנייה חכמה." stagger={0.03} duration={0.9} />
           </span>
           <span className="block text-[12vw] md:text-[7vw] overflow-hidden">
-            <span className="bg-gradient-to-r from-indigo-200 via-purple-300 to-cyan-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-teal-200 via-amber-200 to-cyan-200 bg-clip-text text-transparent">
               <SplitText text="שקופה לחלוטין." stagger={0.03} duration={0.9} delay={0.1} />
             </span>
           </span>
@@ -119,7 +119,7 @@ function HeroG() {
           transition={{ delay: 1.3, duration: 0.8 }}
           className="flex flex-col sm:flex-row justify-center items-center gap-3"
         >
-          <a href="#cta" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#06061a] font-semibold hover:bg-indigo-200 transition-colors text-sm">
+          <a href="#cta" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#06061a] font-semibold hover:bg-teal-200 transition-colors text-sm">
             קבע שיחת ייעוץ
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M19 12L5 12M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -139,7 +139,7 @@ function HeroG() {
       >
         <Tilt intensity={5} className="rounded-3xl">
           <div className="rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-2 shadow-[0_30px_120px_rgba(93,108,255,0.25)]">
-            <div className="rounded-2xl overflow-hidden aspect-[16/9] relative" style={{ background: "linear-gradient(135deg, #1e1b4b, #4338ca, #06b6d4)" }}>
+            <div className="rounded-2xl overflow-hidden aspect-[16/9] relative" style={{ background: "linear-gradient(135deg, #042f2e, #0f766e, #f59e0b)" }}>
               <DashboardMockup />
             </div>
           </div>
@@ -164,7 +164,7 @@ function DashboardMockup() {
                   whileInView={{ width: `${w}%` }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.2, delay: i * 0.15, ease: [0.65, 0.05, 0.36, 1] }}
-                  className="h-full rounded-full bg-gradient-to-r from-indigo-400 to-cyan-300"
+                  className="h-full rounded-full bg-gradient-to-r from-teal-400 to-amber-300"
                 />
               </div>
             ))}
@@ -202,7 +202,7 @@ function DashboardMockup() {
           {[
             ["צריכת אנרגיה", "−23%", "from-emerald-400"],
             ["איכות אוויר", "A+", "from-cyan-400"],
-            ["תפוסה", "87%", "from-violet-400"],
+            ["תפוסה", "87%", "from-amber-400"],
           ].map(([l, v, c], i) => (
             <div key={i} className="rounded-xl bg-white/10 backdrop-blur-xl border border-white/15 p-3 flex flex-col justify-between">
               <div className="text-[9px] text-white/60 uppercase tracking-widest">{l}</div>
@@ -222,19 +222,19 @@ function FeatureSticky() {
       tag: "AI · PARAMETRIC",
       title: "תכנון פרמטרי, חי.",
       body: "שינוי פרמטר אחד ומאות גרסאות מחושבות מחדש בזמן אמת. אופטימיזציית אקלים, אור ועלות בלחיצת כפתור.",
-      gradient: "linear-gradient(135deg, #6366f1, #06b6d4)",
+      gradient: "linear-gradient(135deg, #14b8a6, #06b6d4)",
     },
     {
       tag: "LIDAR · 3D SCAN",
       title: "סריקות ברזולוציית מילימטר.",
       body: "כל מבנה קיים מקבל תאום דיגיטלי. כל פגם, כל סדק, כל נישה — נתון. תכנון על אמת ולא על הנחות.",
-      gradient: "linear-gradient(135deg, #8b5cf6, #ec4899)",
+      gradient: "linear-gradient(135deg, #fb923c, #ec4899)",
     },
     {
       tag: "IOT · LIVE BUILDING",
       title: "בניינים שחושבים.",
       body: "חיישנים פנימיים מנטרים תפוסה, אנרגיה, איכות אוויר. הבניין מדבר עם הצוות אחרי שהוא נמסר.",
-      gradient: "linear-gradient(135deg, #06b6d4, #10b981)",
+      gradient: "linear-gradient(135deg, #2dd4bf, #fbbf24)",
     },
   ];
   const total = features.length;
@@ -267,7 +267,7 @@ function FeaturePanel({
     <motion.div style={{ opacity, scale }} className="sticky top-0 h-screen flex items-center justify-center px-5 md:px-8">
       <div className="grid lg:grid-cols-2 gap-10 max-w-7xl w-full items-center">
         <div>
-          <div className="text-xs uppercase tracking-[0.3em] mb-5 font-mono text-indigo-300">{feature.tag} · 0{index + 1} / 0{total}</div>
+          <div className="text-xs uppercase tracking-[0.3em] mb-5 font-mono text-teal-300">{feature.tag} · 0{index + 1} / 0{total}</div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.95] mb-6">
             {feature.title}
           </h2>
@@ -295,12 +295,12 @@ function ServicesG() {
     <section className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="text-center mb-16 max-w-2xl mx-auto">
-          <div className="text-xs text-indigo-300 uppercase tracking-[0.3em] mb-4 font-mono">השירותים</div>
+          <div className="text-xs text-teal-300 uppercase tracking-[0.3em] mb-4 font-mono">השירותים</div>
           <h2 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4 leading-tight">
             <span className="block overflow-hidden">
               <SplitText text="ארבעה תחומים." stagger={0.04} duration={1} />
             </span>
-            <span className="block overflow-hidden bg-gradient-to-r from-indigo-200 via-white to-cyan-200 bg-clip-text text-transparent">
+            <span className="block overflow-hidden bg-gradient-to-r from-teal-200 via-white to-amber-200 bg-clip-text text-transparent">
               <SplitText text="סטודיו אחד." stagger={0.04} duration={1} delay={0.1} />
             </span>
           </h2>
@@ -324,7 +324,7 @@ function ServicesG() {
                 transition={{ delay: i * 0.06, duration: 0.7 }}
                 className="relative rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-6 hover:border-white/20 transition-colors overflow-hidden h-full"
               >
-                <div className="text-xs text-indigo-300 uppercase tracking-widest mb-3 font-mono">{s.tag}</div>
+                <div className="text-xs text-teal-300 uppercase tracking-widest mb-3 font-mono">{s.tag}</div>
                 <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
                 <p className="text-sm text-white/60 leading-relaxed mb-5">{s.body}</p>
                 <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
@@ -349,7 +349,7 @@ function ShowcaseG() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex items-end justify-between mb-12 gap-6">
           <div>
-            <div className="text-xs text-indigo-300 uppercase tracking-[0.3em] mb-4 font-mono">פרויקטים</div>
+            <div className="text-xs text-teal-300 uppercase tracking-[0.3em] mb-4 font-mono">פרויקטים</div>
             <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-tight">
               <span className="block overflow-hidden">
                 <SplitText text="עבודה חיה." stagger={0.04} duration={1} />
@@ -396,8 +396,8 @@ function NumbersG() {
     <section className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 p-2">
-          <div className="rounded-2xl bg-gradient-to-br from-indigo-950/80 via-purple-950/80 to-cyan-950/80 p-8 md:p-12">
-            <div className="text-xs text-indigo-300 uppercase tracking-[0.3em] mb-10 font-mono text-center">המספרים</div>
+          <div className="rounded-2xl bg-gradient-to-br from-teal-950/80 via-emerald-950/80 to-cyan-950/80 p-8 md:p-12">
+            <div className="text-xs text-teal-300 uppercase tracking-[0.3em] mb-10 font-mono text-center">המספרים</div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((s, i) => (
                 <motion.div
@@ -408,7 +408,7 @@ function NumbersG() {
                   transition={{ delay: i * 0.06, duration: 0.6 }}
                   className="text-center"
                 >
-                  <div className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-r from-indigo-200 to-cyan-200 bg-clip-text text-transparent mb-2">
+                  <div className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-r from-teal-200 to-amber-200 bg-clip-text text-transparent mb-2">
                     {s.value}
                     <span className="text-3xl">{s.suffix}</span>
                   </div>
@@ -429,7 +429,7 @@ function VoicesG() {
     <section className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="text-center mb-12 max-w-xl mx-auto">
-          <div className="text-xs text-indigo-300 uppercase tracking-[0.3em] mb-4 font-mono">המלצות</div>
+          <div className="text-xs text-teal-300 uppercase tracking-[0.3em] mb-4 font-mono">המלצות</div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">לקוחות שלנו, במילים שלהם</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-5">
@@ -446,7 +446,7 @@ function VoicesG() {
                 <figcaption className="border-t border-white/10 pt-4">
                   <div className="font-semibold text-sm">{t.name}</div>
                   <div className="text-xs text-white/55">{t.role}</div>
-                  <div className="text-[10px] text-indigo-300 mt-1 uppercase tracking-widest font-mono">{t.project}</div>
+                  <div className="text-[10px] text-teal-300 mt-1 uppercase tracking-widest font-mono">{t.project}</div>
                 </figcaption>
               </motion.figure>
             </Tilt>
@@ -463,14 +463,14 @@ function CTAG() {
       <div className="mx-auto max-w-5xl px-5 md:px-8">
         <Tilt intensity={3} className="rounded-[2rem]">
           <div className="relative rounded-[2rem] overflow-hidden bg-white/5 backdrop-blur-2xl border border-white/10 p-12 md:p-20 text-center">
-            <div className="absolute -top-1/2 -right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-50" style={{ background: "#5d6cff" }} />
+            <div className="absolute -top-1/2 -right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-50" style={{ background: "#2dd4bf" }} />
             <div className="absolute -bottom-1/2 -left-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-40" style={{ background: "#06b6d4" }} />
             <div className="relative">
               <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-[0.95]">
                 <span className="block overflow-hidden">
                   <SplitText text="יש לכם חזון." stagger={0.04} duration={1} />
                 </span>
-                <span className="block overflow-hidden bg-gradient-to-r from-indigo-200 via-white to-cyan-200 bg-clip-text text-transparent">
+                <span className="block overflow-hidden bg-gradient-to-r from-teal-200 via-white to-amber-200 bg-clip-text text-transparent">
                   <SplitText text="נבנה אותו." stagger={0.04} duration={1} delay={0.1} />
                 </span>
               </h2>
@@ -479,7 +479,7 @@ function CTAG() {
               </p>
               <a
                 href="mailto:hello@nexusbuild.io"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#06061a] font-semibold hover:bg-indigo-200 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#06061a] font-semibold hover:bg-teal-200 transition-colors"
               >
                 קבע פגישה ראשונה
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -500,7 +500,7 @@ function FooterG() {
       <div className="mx-auto max-w-7xl px-5 md:px-8 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/50 font-mono uppercase tracking-widest">
         <span>© NEXUS BUILD · 2026</span>
         <span>HALEVAVOT 14, TLV · HELLO@NEXUSBUILD.IO</span>
-        <a href="#" className="text-indigo-300 hover:text-white transition-colors">↑ TOP</a>
+        <a href="#" className="text-teal-300 hover:text-white transition-colors">↑ TOP</a>
       </div>
     </footer>
   );

@@ -94,12 +94,13 @@ function HeroA() {
             <SplitText text="פשטות מלאה." stagger={0.04} duration={1} />
           </span>
           <span
-            className="block text-[12vw] md:text-[8vw] overflow-hidden"
+            className="block text-[14vw] md:text-[9vw] overflow-hidden font-instrument italic font-normal"
             style={{
               background: `linear-gradient(135deg, ${accent}, ${peach})`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              letterSpacing: "-0.02em",
             }}
           >
             <SplitText text="טכנולוגיה מורכבת." stagger={0.04} duration={1} delay={0.1} />
@@ -222,12 +223,13 @@ function Caption({
         {stage.label} · 0{index + 1} / 0{total}
       </div>
       <h2
-        className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] mb-4"
+        className="text-6xl md:text-8xl font-instrument italic font-normal leading-[0.95] mb-4"
         style={{
           background: `linear-gradient(135deg, ${accent}, ${peach})`,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
+          letterSpacing: "-0.02em",
         }}
       >
         {stage.title}
@@ -305,12 +307,13 @@ function BigStatement() {
             <SplitText text="כל בניין שאנחנו" stagger={0.04} duration={1} />
           </span>
           <span
-            className="block text-5xl md:text-7xl lg:text-8xl overflow-hidden"
+            className="block text-6xl md:text-8xl lg:text-9xl overflow-hidden font-instrument italic font-normal"
             style={{
               background: `linear-gradient(135deg, ${accent}, ${peach})`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              letterSpacing: "-0.025em",
             }}
           >
             <SplitText text="בונים — חי כבר עכשיו." stagger={0.04} duration={1} delay={0.1} />
