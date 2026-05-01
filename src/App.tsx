@@ -1,47 +1,58 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useEffect, useState, lazy, Suspense } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Loader from "./components/Loader";
-import Cursor from "./components/Cursor";
-import Nav from "./components/Nav";
-import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
-import Manifesto from "./components/Manifesto";
-import About from "./components/About";
-import Showcase from "./components/Showcase";
-import Process from "./components/Process";
-import Stats from "./components/Stats";
-import Testimonials from "./components/Testimonials";
-import CTA from "./components/CTA";
-import Footer from "./components/Footer";
+import VariantSwitcher from "./components/VariantSwitcher";
+import { VariantProvider, useVariant } from "./context/VariantContext";
 import { useLenis } from "./hooks/useLenis";
+
+const Crystal = lazy(() => import("./variants/Crystal"));
+const Editorial = lazy(() => import("./variants/Editorial"));
+const Brutalist = lazy(() => import("./variants/Brutalist"));
+const Glass = lazy(() => import("./variants/Glass"));
+const Aurora = lazy(() => import("./variants/Aurora"));
+
+function VariantHost() {
+  const { variant } = useVariant();
+  useLenis(true);
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={variant}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <Suspense fallback={<div className="min-h-screen bg-ink-900" />}>
+          {variant === "crystal" && <Crystal />}
+          {variant === "editorial" && <Editorial />}
+          {variant === "brutalist" && <Brutalist />}
+          {variant === "glass" && <Glass />}
+          {variant === "aurora" && <Aurora />}
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  useLenis(!loading);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 2200);
+    const t = setTimeout(() => setLoading(false), 1800);
     return () => clearTimeout(t);
   }, []);
 
   return (
-    <>
+    <VariantProvider>
       <AnimatePresence mode="wait">{loading && <Loader key="loader" />}</AnimatePresence>
-      <Cursor />
-      <div className="grain" />
-      <Nav />
-      <main className="relative z-10">
-        <Hero />
-        <Marquee />
-        <About />
-        <Manifesto />
-        <Showcase />
-        <Process />
-        <Stats />
-        <Testimonials />
-        <CTA />
-      </main>
-      <Footer />
-    </>
+      {!loading && (
+        <>
+          <VariantHost />
+          <VariantSwitcher />
+        </>
+      )}
+    </VariantProvider>
   );
 }
