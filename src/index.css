@@ -23,26 +23,12 @@
     overflow-x: hidden;
   }
 
-  /* Custom cursor only for Crystal variant on desktop */
-  html[data-variant="crystal"] body,
-  html[data-variant="crystal"] body button,
-  html[data-variant="crystal"] body a {
-    cursor: none;
-  }
-  @media (max-width: 1024px) {
-    html[data-variant="crystal"] body,
-    html[data-variant="crystal"] body button,
-    html[data-variant="crystal"] body a {
-      cursor: auto;
-    }
-  }
-
   /* Body background follows the active variant */
-  html[data-variant="editorial"] body { background: #f1ece2; }
-  html[data-variant="brutalist"] body { background: #ffffff; }
-  html[data-variant="glass"] body { background: #06061a; }
-  html[data-variant="aurora"] body { background: #f4f1ec; }
-  html[data-variant="crystal"] body { background: #050507; }
+  html[data-variant="blueprint"] body { background: #0c2a4a; }
+  html[data-variant="monograph"] body { background: #f3ece1; }
+  html[data-variant="constructivist"] body { background: #f4ebe1; }
+  html[data-variant="kenchiku"] body { background: #fafaf6; }
+  html[data-variant="anderson"] body { background: #f7d7c4; }
 
   ::selection {
     background: var(--accent);

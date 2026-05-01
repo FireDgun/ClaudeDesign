@@ -6,10 +6,17 @@ export default {
       fontFamily: {
         display: ["Orbitron", "system-ui", "sans-serif"],
         sans: ["Heebo", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-        magazine: ["'Frank Ruhl Libre'", "Fraunces", "Georgia", "serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
+        plex: ["'IBM Plex Mono'", "monospace"],
+        magazine: ["'Frank Ruhl Libre'", "'Cormorant Garamond'", "Georgia", "serif"],
         editorial: ["Bellefair", "'Frank Ruhl Libre'", "Georgia", "serif"],
         instrument: ["'Instrument Serif'", "'Frank Ruhl Libre'", "serif"],
+        cormorant: ["'Cormorant Garamond'", "'Frank Ruhl Libre'", "serif"],
+        garamond: ["'EB Garamond'", "'Frank Ruhl Libre'", "serif"],
+        italiana: ["Italiana", "'Cormorant Garamond'", "serif"],
+        major: ["'Major Mono Display'", "monospace"],
+        archivo: ["'Archivo Black'", "Heebo", "sans-serif"],
+        slab: ["'Big Shoulders Display'", "Heebo", "sans-serif"],
       },
       colors: {
         ink: {

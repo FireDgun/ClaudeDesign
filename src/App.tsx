@@ -5,11 +5,11 @@ import VariantSwitcher from "./components/VariantSwitcher";
 import { VariantProvider, useVariant } from "./context/VariantContext";
 import { useLenis } from "./hooks/useLenis";
 
-const Crystal = lazy(() => import("./variants/Crystal"));
-const Editorial = lazy(() => import("./variants/Editorial"));
-const Brutalist = lazy(() => import("./variants/Brutalist"));
-const Glass = lazy(() => import("./variants/Glass"));
-const Aurora = lazy(() => import("./variants/Aurora"));
+const Blueprint = lazy(() => import("./variants/Blueprint"));
+const Monograph = lazy(() => import("./variants/Monograph"));
+const Constructivist = lazy(() => import("./variants/Constructivist"));
+const Kenchiku = lazy(() => import("./variants/Kenchiku"));
+const Anderson = lazy(() => import("./variants/Anderson"));
 
 function VariantHost() {
   const { variant } = useVariant();
@@ -24,12 +24,12 @@ function VariantHost() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <Suspense fallback={<div className="min-h-screen bg-ink-900" />}>
-          {variant === "crystal" && <Crystal />}
-          {variant === "editorial" && <Editorial />}
-          {variant === "brutalist" && <Brutalist />}
-          {variant === "glass" && <Glass />}
-          {variant === "aurora" && <Aurora />}
+        <Suspense fallback={<div className="min-h-screen" />}>
+          {variant === "blueprint" && <Blueprint />}
+          {variant === "monograph" && <Monograph />}
+          {variant === "constructivist" && <Constructivist />}
+          {variant === "kenchiku" && <Kenchiku />}
+          {variant === "anderson" && <Anderson />}
         </Suspense>
       </motion.div>
     </AnimatePresence>
@@ -40,7 +40,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1800);
+    const t = setTimeout(() => setLoading(false), 1400);
     return () => clearTimeout(t);
   }, []);
 
