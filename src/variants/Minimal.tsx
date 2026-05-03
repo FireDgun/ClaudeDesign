@@ -47,9 +47,9 @@ const figmaCopy = {
     { title: "מומחיות ב-GNN", body: "פיצוח לוגיקה מרחבית מורכבת." },
   ],
   figmaStats: [
-    { value: "+24,000", label: "שרטוטים אדריכליים", desc: "שעברו תחת ידינו" },
-    { value: "+8,000", label: "בניינים", desc: "שלקחנו חלק בתכנונם" },
-    { value: '+50,000 מ"ר', label: "קומות משרדים", desc: "שתוכננו ומוטבו ב-AI" },
+    { value: "+24,000", unit: "", label: "שרטוטים אדריכליים", desc: "שעברו תחת ידינו" },
+    { value: "+8,000", unit: "", label: "בניינים", desc: "שלקחנו חלק בתכנונם" },
+    { value: "+50,000", unit: 'מ"ר', label: "קומות משרדים", desc: "שתוכננו ומוטבו ב-AI" },
   ],
   podcastTitle: "פודקאסט",
   podcastSubtitle: 'מדברים אלגוריתמים ונדל״ן',
@@ -108,8 +108,8 @@ function TopFrame() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none" dir="ltr">
-      <div className="px-6 md:px-10 pt-6 flex items-start justify-between text-[10px] font-mono tracking-[0.2em] uppercase text-[#0a0a0a]">
+    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none bg-[#fafaf7]/80 backdrop-blur-md border-b border-[#d4d4d4]/40" dir="ltr">
+      <div className="px-6 md:px-10 py-4 flex items-center justify-between text-[10px] font-mono tracking-[0.2em] uppercase text-[#0a0a0a]">
         <div className="flex flex-col gap-1 pointer-events-auto">
           <div className="flex items-center gap-3">
             <span className="font-serif text-[15px] tracking-[0.02em] normal-case">Pro Algorithm</span>
@@ -131,9 +131,6 @@ function TopFrame() {
           <span>{t || "—— GMT"}</span>
           <span className="text-[#737373]">v.02 / minimal</span>
         </div>
-      </div>
-      <div className="px-6 md:px-10 pt-3">
-        <Hair />
       </div>
     </div>
   );
@@ -181,69 +178,58 @@ function Hero() {
       />
 
       <motion.div style={{ opacity }} className="relative z-10">
-        {/* the giant numeric hero with dimension marks */}
-        <div className="pt-36 md:pt-40 px-6 md:px-10">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 md:col-span-7 lg:col-span-8">
-              <Mono className="text-[#737373]">{scenes[0].eyebrow} · I — HERO</Mono>
-              <motion.h1
-                style={{ y: yTitle }}
-                className="font-magazine font-light text-[#0a0a0a] mt-6 leading-[0.92] tracking-[-0.02em]"
-              >
-                <span className="block text-[clamp(40px,7vw,120px)] text-[#737373] font-light">
-                  {brand.nameHe}
-                </span>
-                <span className="block text-[clamp(48px,8.4vw,140px)] mt-3">
-                  {figmaCopy.heroTitle.split(" ").slice(0, -2).join(" ")}{" "}
-                  <span style={{ color: ROYAL }}>
-                    {figmaCopy.heroTitle.split(" ").slice(-2).join(" ")}
-                  </span>
-                </span>
-              </motion.h1>
-            </div>
-
-            {/* metadata side panel */}
-            <div className="col-span-12 md:col-span-5 lg:col-span-4" dir="ltr">
-              <div className="border-t border-[#d4d4d4] pt-4 space-y-3">
-                <Row k="DOC" v="PA-LP-02-MIN" />
-                <Row k="CLIENT" v="Pro Algorithm Ltd." />
-                <Row k="ISSUED" v="03 May 2026" />
-                <Row k="LOCATION" v="Tel Aviv, IL" />
-                <Row k="REV" v="A — for review" />
-              </div>
-            </div>
+        <div className="pt-32 md:pt-36 px-6 md:px-10">
+          <div className="flex items-center justify-between text-[10px] font-mono tracking-[0.3em] uppercase text-[#737373] mb-10">
+            <span>{scenes[0].eyebrow}</span>
+            <span dir="ltr">PRO ALGORITHM · TLV · EST. 2024</span>
           </div>
-        </div>
 
-        {/* dimension-marked massive number */}
-        <div className="px-6 md:px-10 mt-12 md:mt-20">
-          <Hair />
-          <div className="grid grid-cols-12 gap-6 py-8" dir="ltr">
-            <div className="col-span-12 md:col-span-8">
-              <div className="flex items-center gap-3">
-                <span className="text-[#0a0a0a] font-mono text-xs">├</span>
-                <div className="flex-1 border-t border-dashed border-[#d4d4d4]" />
-                <span className="font-serif italic font-light text-[clamp(80px,14vw,220px)] leading-none text-[#0a0a0a]">
-                  240<span className="text-[#0040ff]">k</span>
-                </span>
-                <div className="flex-1 border-t border-dashed border-[#d4d4d4]" />
-                <span className="text-[#0a0a0a] font-mono text-xs">┤</span>
-              </div>
-              <div className="mt-3 text-center">
-                <Mono className="text-[#737373]">PLANS GENERATED · CUMULATIVE SINCE 2024</Mono>
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-4 flex flex-col justify-end" dir="rtl">
-              <p className="font-sans text-[14px] leading-[1.7] text-[#0a0a0a] max-w-[32ch]">
+          <motion.h1 style={{ y: yTitle }} className="text-[#0a0a0a]">
+            <span className="block font-heebo font-black tracking-[-0.04em] text-[clamp(56px,11vw,180px)] leading-[0.86]">
+              {figmaCopy.heroTitle.split(" ").slice(0, -2).join(" ")}
+            </span>
+            <span className="block font-heebo font-black tracking-[-0.04em] text-[clamp(56px,11vw,180px)] leading-[0.86]" style={{ color: ROYAL }}>
+              {figmaCopy.heroTitle.split(" ").slice(-2).join(" ")}.
+            </span>
+          </motion.h1>
+
+          <div className="mt-12 grid grid-cols-12 gap-6">
+            <div className="col-span-12 md:col-span-7 lg:col-span-6">
+              <p className="font-heebo text-[16px] md:text-[18px] leading-[1.7] text-[#0a0a0a] max-w-[44ch]">
                 {figmaCopy.heroBody}
               </p>
+              <div className="mt-7 flex items-center gap-3">
+                <a href="#cta" className="inline-flex items-center gap-2 px-5 py-3 text-sm font-heebo font-medium" style={{ background: NAVY, color: PAPER }}>
+                  קבע שיחת ייעוץ <span aria-hidden>←</span>
+                </a>
+                <a href="#scene-02" className="inline-flex items-center gap-2 px-5 py-3 text-sm font-heebo font-medium border border-[#0a0a0a]/25">
+                  ראה איך זה עובד
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden md:block md:col-span-5 lg:col-span-6" dir="ltr">
+              <div className="border-t border-[#0a0a0a]/25 pt-4 grid grid-cols-2 gap-x-6 gap-y-2">
+                <Row k="DOC" v="PA-LP-02-MIN" />
+                <Row k="ISSUED" v="03 MAY 2026" />
+                <Row k="CLIENT" v="Pro Algorithm Ltd." />
+                <Row k="LOCATION" v="Tel Aviv, IL" />
+              </div>
+              <div className="mt-6 grid grid-cols-3 gap-4 border-t border-[#0a0a0a]/25 pt-4" dir="ltr">
+                <Mini value="240k+" label="Plans" />
+                <Mini value="14" label="Studios" />
+                <Mini value="98%" label="Sat." />
+              </div>
             </div>
           </div>
-          <Hair />
         </div>
 
         {/* The exploded axonometric city — pure SVG */}
-        <motion.div style={{ y: yCity }} className="px-6 md:px-10 mt-16 md:mt-24">
+        <motion.div style={{ y: yCity }} className="px-6 md:px-10 mt-20 md:mt-28">
+          <div className="flex items-baseline justify-between mb-3" dir="ltr">
+            <Mono className="text-[#737373]">FIG. 01 — TLV CBD · ISO PROJECTION</Mono>
+            <Mono className="text-[#737373]">SCALE 1:8000 · 14 BUILDING SITES ACTIVE</Mono>
+          </div>
           <SVGCity />
         </motion.div>
       </motion.div>
@@ -257,6 +243,17 @@ function Row({ k, v }: { k: string; v: string }) {
       <span className="text-[#737373] w-24 shrink-0">{k}</span>
       <span className="flex-1 border-b border-dotted border-[#d4d4d4] translate-y-[-3px]" />
       <span className="text-[#0a0a0a]">{v}</span>
+    </div>
+  );
+}
+
+function Mini({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <div className="font-heebo font-black text-[clamp(20px,2.4vw,32px)] tracking-[-0.02em]" style={{ color: ROYAL }}>
+        {value}
+      </div>
+      <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-[#737373] mt-1">{label}</div>
     </div>
   );
 }
@@ -279,10 +276,10 @@ function SVGCity() {
     const ctx = gsap.context(() => {
       gsap.to("[data-stroke]", {
         strokeDashoffset: 0,
-        duration: 2,
+        duration: 1.2,
         ease: "power2.out",
-        stagger: 0.04,
-        scrollTrigger: { trigger: ref.current, start: "top 80%" },
+        stagger: 0.018,
+        scrollTrigger: { trigger: ref.current, start: "top 90%" },
       });
     }, ref);
     return () => ctx.revert();
@@ -314,8 +311,8 @@ function SVGCity() {
       fill="none"
     >
       {/* ground line */}
-      <line x1="0" y1="400" x2="1240" y2="400" stroke={RULE} strokeWidth="1" data-stroke />
-      <line x1="0" y1="410" x2="1240" y2="410" stroke={RULE} strokeWidth="1" strokeDasharray="2 4" data-stroke />
+      <line x1="0" y1="400" x2="1240" y2="400" stroke={INK} strokeWidth="1.5" data-stroke />
+      <line x1="0" y1="410" x2="1240" y2="410" stroke={"#737373"} strokeWidth="0.8" strokeDasharray="2 4" data-stroke />
 
       <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill={GRAY} stroke="none">
         <text x="6" y="445">X — LONGITUDE 34.7818</text>
@@ -330,17 +327,17 @@ function SVGCity() {
             <path
               data-stroke
               d={`M ${b.x} ${top} L ${b.x + b.w} ${top} L ${b.x + b.w} ${b.y + b.h} L ${b.x} ${b.y + b.h} Z`}
-              strokeWidth={i === 4 ? 1.2 : 0.7}
+              strokeWidth={i === 4 ? 2 : 1.3}
             />
             <path
               data-stroke
               d={`M ${b.x + b.w} ${top} L ${b.x + b.w + depth} ${top - depth * ISO} L ${b.x + b.w + depth} ${b.y + b.h - depth * ISO} L ${b.x + b.w} ${b.y + b.h} Z`}
-              strokeWidth={0.7}
+              strokeWidth={i === 4 ? 1.6 : 1.1}
             />
             <path
               data-stroke
               d={`M ${b.x} ${top} L ${b.x + b.w} ${top} L ${b.x + b.w + depth} ${top - depth * ISO} L ${b.x + depth} ${top - depth * ISO} Z`}
-              strokeWidth={0.7}
+              strokeWidth={i === 4 ? 1.6 : 1.1}
             />
             {Array.from({ length: Math.floor(b.h / 14) }).map((_, k) => (
               <line
@@ -350,8 +347,8 @@ function SVGCity() {
                 y1={top + (k + 1) * 14}
                 x2={b.x + b.w}
                 y2={top + (k + 1) * 14}
-                stroke={RULE}
-                strokeWidth={0.4}
+                stroke={"#737373"}
+                strokeWidth={0.7}
               />
             ))}
             {i === 4 && (
@@ -518,7 +515,7 @@ function ExplodedScene({ mobile }: { mobile: boolean }) {
       <div className="grid grid-cols-12 gap-6 px-6 md:px-10 py-12">
         <div className="col-span-12 md:col-span-7">
           <Mono className="text-[#737373]">{scenes[1].eyebrow}</Mono>
-          <h2 className="font-magazine font-light text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+          <h2 className="font-heebo font-black tracking-[-0.025em] text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
             {scenes[1].title}
           </h2>
         </div>
@@ -640,7 +637,7 @@ function PlansScene() {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-5">
             <Mono className="text-[#737373]">{scenes[2].eyebrow}</Mono>
-            <h2 className="font-magazine font-light text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+            <h2 className="font-heebo font-black tracking-[-0.025em] text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
               {scenes[2].title}
             </h2>
             <p className="font-sans text-[14px] leading-[1.75] text-[#0a0a0a] max-w-[40ch] mt-8">
@@ -748,7 +745,7 @@ function CADScene() {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-5">
             <Mono className="text-[#737373]">{scenes[3].eyebrow}</Mono>
-            <h2 className="font-magazine font-light text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+            <h2 className="font-heebo font-black tracking-[-0.025em] text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
               {scenes[3].title}
             </h2>
             <p className="font-sans text-[14px] leading-[1.75] text-[#0a0a0a] max-w-[40ch] mt-8">
@@ -911,7 +908,7 @@ function AIScene() {
         <div className="grid grid-cols-12 gap-6 items-center">
           <div className="col-span-12 md:col-span-5 order-2 md:order-1">
             <Mono className="text-[#737373]">{scenes[4].eyebrow}</Mono>
-            <h2 className="font-magazine font-light text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+            <h2 className="font-heebo font-black tracking-[-0.025em] text-[clamp(40px,6vw,92px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
               {scenes[4].title}
             </h2>
             <p className="font-sans text-[14px] leading-[1.75] text-[#0a0a0a] max-w-[40ch] mt-8">
@@ -1013,7 +1010,7 @@ function ServicesStrip() {
                 </span>
                 <Mono className="text-[#737373]" dir="ltr">{String(i + 1).padStart(2, "0")} / 04</Mono>
               </div>
-              <h3 className="font-magazine text-[26px] md:text-[30px] leading-tight text-[#0a0a0a] mt-5">
+              <h3 className="font-heebo font-bold tracking-[-0.02em] text-[24px] md:text-[28px] leading-tight text-[#0a0a0a] mt-5">
                 {s.title}
               </h3>
               <p className="font-sans text-[14px] leading-[1.65] text-[#0a0a0a] mt-2">
@@ -1052,10 +1049,12 @@ function StatsSection() {
                 <Mono className="text-[#737373]" dir="ltr">{String(i + 1).padStart(2, "0")} / 03</Mono>
               </div>
               <div
-                className="font-magazine font-light text-[clamp(56px,8.5vw,120px)] leading-[0.95] tracking-[-0.03em]"
+                className="font-heebo font-black tracking-[-0.04em] text-[clamp(40px,4.4vw,64px)] leading-[1] tabular-nums flex items-baseline gap-2"
                 style={{ color: ROYAL }}
+                dir="ltr"
               >
-                {s.value}
+                <span>{s.value}</span>
+                {s.unit && <span className="text-[0.5em] font-semibold tracking-normal" style={{ color: ROYAL, opacity: 0.85 }}>{s.unit}</span>}
               </div>
               <div className="mt-4 font-sans text-[16px] text-[#0a0a0a] font-medium">{s.label}</div>
               <div className="mt-1 font-sans text-[13px] text-[#737373]">{s.desc}</div>
@@ -1108,7 +1107,7 @@ function PodcastSection() {
             <Mono className="text-[#737373]">VII — פודקאסט</Mono>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h3 className="font-magazine font-light text-[clamp(36px,5.4vw,84px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a]">
+            <h3 className="font-heebo font-black tracking-[-0.025em] text-[clamp(36px,5.4vw,84px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a]">
               <span style={{ color: ROYAL }}>{figmaCopy.podcastTitle}.</span>{" "}
               {figmaCopy.podcastSubtitle}
             </h3>
@@ -1144,7 +1143,7 @@ function PodcastSection() {
               </div>
               <div>
                 <Mono className="text-white/60" dir="ltr">EP. 014 · 48 MIN</Mono>
-                <h4 className="font-magazine text-[clamp(28px,3.6vw,52px)] leading-[1.05] mt-3">
+                <h4 className="font-heebo font-bold tracking-[-0.025em] text-[clamp(24px,3.2vw,42px)] leading-[1.1] mt-3">
                   {figmaCopy.podcastFeatured.title}
                 </h4>
                 <button
@@ -1173,7 +1172,7 @@ function PodcastSection() {
               >
                 <div>
                   <Mono className="text-white/55" dir="ltr">EP. {String(13 - i).padStart(3, "0")} · {e.date}</Mono>
-                  <h5 className="font-magazine text-[20px] md:text-[22px] leading-[1.25] mt-2">
+                  <h5 className="font-heebo font-bold tracking-[-0.02em] text-[18px] md:text-[20px] leading-[1.3] mt-2">
                     {e.title}
                   </h5>
                 </div>
@@ -1216,7 +1215,7 @@ function PressSection() {
             <Mono className="text-[#737373]">VIII — תקשורת</Mono>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h3 className="font-magazine font-light text-[clamp(36px,5.4vw,84px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a]">
+            <h3 className="font-heebo font-black tracking-[-0.025em] text-[clamp(36px,5.4vw,84px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a]">
               <span style={{ color: ROYAL }}>{figmaCopy.pressSubtitle}.</span>
             </h3>
             <p className="mt-4 font-sans text-[15px] leading-[1.7] max-w-[60ch] text-[#0a0a0a]">
@@ -1312,7 +1311,7 @@ function HorizontalProducts() {
         <div ref={track} className="flex items-stretch gap-8 px-6 md:px-10 py-20 will-change-transform" style={{ width: "max-content" }}>
           <div className="w-[80vw] md:w-[40vw] shrink-0" dir="rtl">
             <Mono className="text-[#737373]">PRODUCTS · 01—04</Mono>
-            <h3 className="font-magazine font-light text-[clamp(36px,5vw,72px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+            <h3 className="font-heebo font-black tracking-[-0.025em] text-[clamp(36px,5vw,72px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
               ארבעה מוצרים. <br />שפה אחת.
             </h3>
             <p className="font-sans text-[14px] leading-[1.75] text-[#0a0a0a] max-w-[36ch] mt-6">
@@ -1420,7 +1419,7 @@ function TestimonialsSection() {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-3">
             <Mono className="text-[#737373]">VOICES · N=120</Mono>
-            <h3 className="font-magazine font-light text-[clamp(32px,4vw,56px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+            <h3 className="font-heebo font-black tracking-[-0.025em] text-[clamp(32px,4vw,56px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
               מה שאומרים<br />עלינו.
             </h3>
           </div>
@@ -1484,7 +1483,7 @@ function TeamSection() {
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-4">
             <Mono className="text-[#737373]">TEAM · 04 FOUNDERS</Mono>
-            <h3 className="font-magazine font-light text-[clamp(32px,4vw,56px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
+            <h3 className="font-heebo font-black tracking-[-0.025em] text-[clamp(32px,4vw,56px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
               צוות קטן.<br />אמביציה גדולה.
             </h3>
           </div>
@@ -1541,7 +1540,7 @@ function FinalCTA() {
             </span>
           </div>
           <Mono className="text-white/65 mb-6 inline-block">{figmaCopy.finalEyebrow}</Mono>
-          <h2 className="font-magazine font-light text-[clamp(48px,9vw,160px)] leading-[0.92] tracking-[-0.025em] text-white mb-10">
+          <h2 className="font-heebo font-black tracking-[-0.025em] text-[clamp(48px,9vw,160px)] leading-[0.92] tracking-[-0.025em] text-white mb-10">
             {figmaCopy.finalTitle}
           </h2>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
@@ -1582,42 +1581,42 @@ function FooterSection() {
   return (
     <footer className="relative" dir="rtl">
       <Hair />
-      <div className="px-6 md:px-10 py-16">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-6">
-            <Mono className="text-[#737373]">— END OF DOCUMENT</Mono>
-            <h4 className="font-magazine font-light text-[clamp(40px,6vw,84px)] leading-[0.95] tracking-[-0.02em] text-[#0a0a0a] mt-4">
-              נשמח לדבר.
-            </h4>
-            <a
-              href={`mailto:${brand.email}`}
-              className="inline-block mt-8 font-magazine text-[clamp(22px,2.4vw,32px)] text-[#0a0a0a] underline decoration-[#0040ff] decoration-1 underline-offset-[6px]"
-              dir="ltr"
-            >
+      <div className="px-6 md:px-10 py-12">
+        <div className="grid grid-cols-12 gap-6 text-[10px] font-mono tracking-[0.18em] uppercase text-[#0a0a0a]" dir="ltr">
+          <div className="col-span-12 md:col-span-3">
+            <Mono className="text-[#737373]">OFFICE</Mono>
+            <div className="mt-3 space-y-1 normal-case tracking-normal text-[12px]" dir="rtl">
+              <div>{brand.address}</div>
+            </div>
+            <div className="mt-2">{brand.phone}</div>
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <Mono className="text-[#737373]">CONTACT</Mono>
+            <a href={`mailto:${brand.email}`} className="block mt-3 normal-case tracking-normal text-[12px] underline decoration-[#1e40ff] decoration-1 underline-offset-[4px]">
               {brand.email}
             </a>
           </div>
-          <div className="col-span-6 md:col-span-3" dir="ltr">
-            <Mono className="text-[#737373]">OFFICE</Mono>
-            <div className="mt-4 space-y-1 font-sans text-[14px] text-[#0a0a0a]" dir="rtl">
-              <div>{brand.address}</div>
-              <div>{brand.cityHe}</div>
+          <div className="col-span-6 md:col-span-3">
+            <Mono className="text-[#737373]">FOLLOW</Mono>
+            <div className="mt-3 flex gap-3" dir="ltr">
+              <a href="#" className="hover:text-[#1e40ff]">IG</a>
+              <a href="#" className="hover:text-[#1e40ff]">FB</a>
+              <a href="#" className="hover:text-[#1e40ff]">LI</a>
+              <a href="#" className="hover:text-[#1e40ff]">YT</a>
             </div>
-            <div className="mt-3 font-mono text-[10px] tracking-[0.18em] uppercase text-[#0a0a0a]">{brand.phone}</div>
           </div>
-          <div className="col-span-6 md:col-span-3" dir="ltr">
+          <div className="col-span-12 md:col-span-3">
             <Mono className="text-[#737373]">COLOPHON</Mono>
-            <div className="mt-4 space-y-1 font-mono text-[10px] tracking-[0.18em] uppercase text-[#0a0a0a]">
-              <div>Set in Playfair · Frank Ruhl</div>
-              <div>Body in Inter · Heebo</div>
+            <div className="mt-3 space-y-1">
+              <div>Set in Heebo · Inter · IBM Plex Mono</div>
               <div>Drawn 2026 · Tel Aviv</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-[#d4d4d4] flex flex-wrap items-end justify-between gap-4" dir="ltr">
-          <div className="font-magazine font-light leading-none text-[clamp(80px,18vw,260px)] text-[#0a0a0a] tracking-[-0.04em]">
-            Pro<span className="text-[#0040ff]">.</span>Algorithm
+        <div className="mt-12 pt-6 border-t border-[#d4d4d4] flex flex-wrap items-end justify-between gap-4" dir="ltr">
+          <div className="font-heebo font-black tracking-[-0.04em] leading-[0.85] text-[clamp(80px,18vw,260px)] text-[#0a0a0a]">
+            Pro<span className="text-[#1e40ff]">.</span>Algorithm
           </div>
           <Mono className="text-[#737373]">© 2026 · ALL RIGHTS RESERVED</Mono>
         </div>
